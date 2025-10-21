@@ -14,8 +14,8 @@ processing:
   
 # LM Studio Settings
 llm:
-  api_endpoint: "http://localhost:1234/v1"
-  model_name: "llava-1.6-mistral-7b"
+  api_endpoint: "http://127.0.0.1:512/v1"  # Your actual endpoint
+  model_name: "google/gemma-3-12b"
   timeout: 120
   max_retries: 3
   temperature: 0.3

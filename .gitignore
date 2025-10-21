@@ -73,9 +73,8 @@ output/sample_*.json
 
 # ============ IDE & Editors ============
 # VS Code
-.vscode/
-.vscode/*
-*.code-workspace
+*.code-workspace  # Ignore workspace files only
+
 
 # PyCharm
 .idea/
