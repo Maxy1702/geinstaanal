@@ -1,0 +1,154 @@
+# ================================
+# IQOS Social Intelligence Project
+# .gitignore - Complete Version
+# ================================
+
+# ============ Python ============
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ============ Virtual Environments ============
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# ============ Data Files (CRITICAL - Don't Commit!) ============
+# Instagram dataset (47 MB - too large!)
+data/input/*.json
+data/input/*.csv
+
+# Downloaded images (will grow to ~550 MB)
+data/images/*
+data/images/**/*
+
+# Processed data and progress tracking
+data/processed/*
+data/processed/**/*
+
+# Keep directory structure
+!data/input/.gitkeep
+!data/images/.gitkeep
+!data/processed/.gitkeep
+
+# ============ Output Files ============
+# Generated reports
+output/reports/*
+output/reports/**/*
+
+# Log files
+output/logs/*
+output/logs/**/*
+*.log
+
+# Test outputs (optional - these are small so could commit)
+output/sample_*.json
+
+# Keep directory structure
+!output/reports/.gitkeep
+!output/logs/.gitkeep
+
+# ============ IDE & Editors ============
+# VS Code
+.vscode/
+.vscode/*
+*.code-workspace
+
+# PyCharm
+.idea/
+.idea/*
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+.*.sw?
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# ============ OS Files ============
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory
+.Trash-*
+
+# ============ Jupyter Notebooks ============
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# ============ Testing ============
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# ============ Environment Variables ============
+.env
+.env.local
+.env.*.local
+*.env
+
+# ============ Misc ============
+*.bak
+*.tmp
+*.temp
+.cache/
+dataset_instagram-scraper_2025-10-21_12-40-20-239_schema_report.json

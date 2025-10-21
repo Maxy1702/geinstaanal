@@ -1,0 +1,35 @@
+# IQOS Social Intelligence Analysis Configuration
+
+# Data Settings
+data:
+  input_file: "/Users/maksimyerokhin/Downloads/dataset_instagram-scraper_2025-10-21_12-40-20-239.json"
+  output_dir: "output/reports"
+  image_cache_dir: "data/images"
+  processed_state_dir: "data/processed"
+
+# Processing Mode
+processing:
+  mode: "sample"  # "sample" or "full"
+  sample_size: 50  # Number of posts in sample mode
+  
+# LM Studio Settings (we'll configure later)
+llm:
+  api_endpoint: "http://localhost:1234/v1"
+  model_name: "llava-1.6-mistral-7b"
+  timeout: 120
+  max_retries: 3
+  temperature: 0.3
+
+# Image Settings
+images:
+  download_enabled: true
+  max_images_per_post: 10
+  
+# Comment Settings
+comments:
+  max_comments: 20  # firstComment + latestComments
+  
+# Progress
+progress:
+  save_interval: 10
+  log_level: "INFO"
