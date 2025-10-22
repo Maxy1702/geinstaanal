@@ -1280,17 +1280,37 @@ python run_analysis.py
 - Success rate: 100% (50/50)
 - Full run estimate: ~20 hours (2,629 posts)
 
-⚠️ **In Progress:**
-- Second 50-post validation run with improved anti-false-positive prompt
-- Expected completion: ~1:17 PM (started 12:54 PM)
-- Purpose: Validate fire emoji false positive fix
+### **Critical Issue Discovered & Resolved: 100% False Positive Rate**
+
+**Problem:** User manual review revealed ALL 7 detections in first 50-post run were false positives:
+- Fingernails → misidentified as HNB devices
+- Candles/religious icons → misidentified as cigarettes
+- Ceramic elements → misidentified as tobacco sticks
+- Cell phones → misidentified as devices
+- Woman posing with hand near face → misidentified as "holding cigarette"
+
+**Root Cause:** LLM hallucinating nicotine products from ambiguous "slim cylindrical objects"
+
+**Fixes Applied (3 iterations):**
+
+**Run #1** (12:46 PM): 7/50 detections (100% false positives)
+- Original prompt with basic detection threshold
+
+**Run #2** (2:17 PM): 1/50 detection (still false positive) - 86% improvement
+- Added: "DO NOT confuse fingernails, candles, ceramics"
+- Added: Require specific brand indicators (text, logos, packaging)
+
+**Run #3** (2:33 PM): In progress - Target: 0% false positives
+- Added: "HAND NEAR FACE ≠ smoking"
+- Added: "NOT SUFFICIENT" list ("appears to be", "slim object", "consistent with")
+- Policy: "False negatives acceptable, false positives NOT"
 
 ### **Next Steps:**
 
-1. ✅ **Validate False Positive Fix** - Review second 50-post run results
+1. ⏳ **Validate Run #3** - Confirm zero false positives (currently at 56%)
 2. 🎯 **Full Production Run** - Execute overnight (2,629 posts, ~20 hours)
-3. 📊 **Deliver Final Report** - Excel workbook to brand manager
-4. 🔄 **Optional Enhancement** - Dedicated `report_builder.py` for advanced Excel features
+3. 📊 **Implement 8-Sheet Business Intelligence Report** - Executive dashboard, Share of Voice, Influencer Database
+4. 📦 **Deliver Final Excel Workbook** - Actionable intelligence for brand manager
 
 ### **Ready for Production:**
 - All critical bugs fixed
