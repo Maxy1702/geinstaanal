@@ -175,10 +175,15 @@ def create_detections_sheet(ws, results):
         category = products[0]['category'] if products else ""
         brand = products[0].get('specific_brand', '') if products else ""
 
-        # Extract evidence
-        visual_ev = "; ".join(nd['detection_evidence'].get('visual', []))[:200]
-        caption_ev = "; ".join(nd['detection_evidence'].get('caption', []))[:200]
-        comments_ev = "; ".join(nd['detection_evidence'].get('comments', []))[:200]
+        # Extract evidence - handle both list of strings and single strings
+        visual_list = nd['detection_evidence'].get('visual', [])
+        caption_list = nd['detection_evidence'].get('caption', [])
+        comments_list = nd['detection_evidence'].get('comments', [])
+
+        # Ensure we're joining strings, not characters
+        visual_ev = " | ".join(str(v) for v in visual_list if v and v != "not_mentioned")[:300]
+        caption_ev = " | ".join(str(c) for c in caption_list if c and c != "not_mentioned")[:300]
+        comments_ev = " | ".join(str(c) for c in comments_list if c and c != "not_mentioned")[:300]
 
         # Write row
         ws.cell(row=row, column=1).value = f"@{r['username']}"

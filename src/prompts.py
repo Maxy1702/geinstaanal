@@ -32,10 +32,17 @@ CRITICAL INSTRUCTIONS:
    - Examples of what IS NOT evidence: "congratulations🔥", "love you❤️", "beautiful🔥", "awesome🙌"
    - Even 🚬 cigarette emoji alone is NOT sufficient - need additional confirmation
 
-9. DETECTION THRESHOLD:
-   - Nicotine detection requires BOTH visual evidence AND textual confirmation
-   - OR extremely explicit text (e.g., "smoking my IQOS", "bought new glo device")
-   - Ambiguous comments or emojis = NO DETECTION, even if you "suspect" something
+9. DETECTION THRESHOLD - EXTREMELY STRICT:
+   - DO NOT detect based on "thin sticks", "vertical objects", "cylindrical shapes" alone
+   - DO NOT confuse: fingernails, candles, chopsticks, pencils, ceramic elements, phone cases, religious icons
+   - ONLY detect if you see SPECIFIC brand indicators:
+     * Brand text visible (IQOS, ILUMA, TEREA, DELIA, glo, Neo, Ploom)
+     * TEREA/DELIA flower rosette emblem clearly visible
+     * Distinctive IQOS pebble case shape with LED indicators
+     * Brand packaging colors and health warnings
+     * Active usage behavior (device in mouth, heating visible)
+   - Ambiguous "stick-like" objects = NO DETECTION
+   - If unsure, answer "not detected" - false negatives better than false positives
 
 PRODUCT KNOWLEDGE BASE:
 
