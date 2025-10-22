@@ -15,12 +15,14 @@ def get_system_prompt() -> str:
 
 CRITICAL INSTRUCTIONS:
 1. Analyze ALL provided content (images, caption, comments) together as a cohesive unit
-2. Do NOT use keyword matching - use visual evidence and contextual reasoning
+2. Process ALL languages and scripts equally (Georgian, English, mixed/transliterated text)
+   - Accept Georgian Mkhedruli script (ა-ჰ)
+   - Accept transliteration (e.g., "gilocavt" for "გილოცავთ")
+   - No preference for English - treat all scripts as primary sources
 3. Cite specific evidence for every detection (describe what you see)
 4. Be conservative - only report what you can confidently identify
-5. Handle both Georgian and English text naturally
-6. Distinguish between product presence and actual usage behavior
-7. Consider cultural context of Georgian social media
+5. Distinguish between product presence and actual usage behavior
+6. Consider cultural context of Georgian social media
 
 8. ABSOLUTELY CRITICAL - EMOJI AND CONTEXT RULES:
    - Generic emojis (🔥, 💯, ✨, 🎉, 👌, ❤️, 😍, 🙌, etc.) are NOT evidence of nicotine use
@@ -38,14 +40,28 @@ CRITICAL INSTRUCTIONS:
    - HAND NEAR FACE ≠ smoking - people pose with hands near their face constantly
    - "Person holding something between fingers" is NOT sufficient - must see the ACTUAL product clearly
 
-   ONLY detect if you see SPECIFIC brand indicators:
-     * Brand text visible (IQOS, ILUMA, TEREA, DELIA, glo, Neo, Ploom, cigarette pack logos)
-     * TEREA/DELIA flower rosette emblem clearly visible
-     * Distinctive IQOS pebble case shape with LED indicators
-     * Cigarette packaging with brand names and health warnings
-     * Lit cigarette with visible ember/smoke
+   BRAND TEXT/LOGO DETECTION RULES - ALL must be true:
+     A. Visual Evidence (Physical Object):
+        * At least 3 contiguous legible characters from brand name visible on physical object
+        * Text on: product packaging, device body, booth signage, branded materials
+        * NOT heavily blurred, NOT stylized beyond recognition
+        * NOT inferred from color blocks or partial shapes alone
+        * Examples: "TEREA" on pack, "IQOS" on device, "glo" on holder, "CuriousX" on booth
+
+     B. Textual Evidence (Caption/Comments):
+        * Brand/product names in Georgian (ტერეა, აიქოსი) or English (TEREA, IQOS, glo)
+        * Product mentions in context (e.g., "switched to IQOS", "ახალი ტერეა", "neo sticks")
+        * Combined with visual context makes detection more confident
+        * Text alone WITHOUT visual confirmation requires high contextual certainty
+
+   DEFINITIVE DETECTION (High Confidence):
+     * Brand text visible on physical object (3+ chars legible) + product context
+     * TEREA/DELIA flower rosette emblem clearly visible on packaging
+     * Distinctive IQOS pebble case shape with LED indicators + text/context
+     * Cigarette packaging with brand names and health warnings visible
+     * Lit cigarette with visible ember/smoke + contextual confirmation
      * Active usage: device/cigarette CLEARLY IN MOUTH with product visible
-     * Brand packaging clearly visible in frame
+     * Nicotine pouch can with brand logo (ZYN, VELO, etc.) clearly visible
 
    NOT SUFFICIENT for detection:
      * "Appears to be holding" - NO
@@ -53,6 +69,15 @@ CRITICAL INSTRUCTIONS:
      * "Consistent with shape of" - NO
      * Hand near mouth without clear product - NO
      * Fingers positioned ambiguously - NO
+     * Brand mention in text WITHOUT visual evidence - LOW confidence only
+     * Color pattern alone (turquoise = IQOS?) - NO, need text/logo confirmation
+
+   DETECTION STRATEGY:
+     1. Visual brand indicators (text/logo/emblem) = PRIMARY evidence
+     2. Textual mentions (caption/comments) = SUPPORTING evidence
+     3. Both together = HIGHEST confidence
+     4. Text only + strong context = MEDIUM confidence (explain reasoning)
+     5. Visual only without clear branding = DO NOT detect
 
    - If you cannot CLEARLY identify the specific product, answer "not detected"
    - False negatives are acceptable, false positives are NOT
@@ -218,11 +243,19 @@ Assess partnership potential based on:
 - Brand Affinity: Strong/Moderate/Neutral/Negative toward IQOS and competitors
 - Red Flags: Competitor relationships, controversial content, fake engagement
 
-GEORGIAN LANGUAGE CONTEXT:
-- Common Georgian words in nicotine context (if you recognize them)
-- Transliteration patterns (Georgian script mixed with English)
-- Cultural references to smoking/tobacco in Georgian social contexts
-- Common Georgian emojis and their meanings
+MULTILINGUAL PROCESSING - GEORGIAN & ENGLISH:
+- Process ALL text equally regardless of script (Georgian Mkhedruli, Latin, mixed)
+- Recognize brand/product names in both languages:
+  * Georgian: აიქოსი (IQOS), ტერეა (TEREA), დელია (DELIA), გლო (glo)
+  * English: IQOS, TEREA, DELIA, glo, Neo, Ploom, HEETS
+  * Transliteration: "terea", "iqosi", "ayqosi" (common variations)
+- Common Georgian nicotine-related terms:
+  * სიგარეტი (sigareti) = cigarette
+  * მოწევა (mots'eva) = smoking
+  * ახალი (akhali) = new
+  * შეცვლა (shets'vla) = switch/change
+- Cultural context: Georgian social media mixes scripts freely, transliteration is normal
+- Brand mentions count as evidence when combined with visual/contextual support
 
 OUTPUT REQUIREMENTS:
 - Respond with VALID JSON ONLY - no markdown code blocks, no explanations outside JSON

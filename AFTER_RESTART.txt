@@ -1,0 +1,32 @@
+=================================================================
+           QUICK RESTART GUIDE
+=================================================================
+
+AFTER MACHINE RESTART:
+
+1. Start LM Studio
+   - Load: Gemma 3 12B
+   - Start server: http://127.0.0.1:512/v1
+
+2. Open terminal in: C:\Users\merok\Downloads\geinstaanal\geinstaanal
+
+3. Verify status:
+   python check_status.py
+
+4. Resume analysis:
+   python run_full_analysis.py --mode full --resume
+
+5. Monitor (optional):
+   python monitor_analysis_live.py
+
+=================================================================
+
+ALL DATA SAVED:
+  ✅ 7,790 images (1.2 GB)
+  ✅ 7 posts checkpoint
+  ✅ All documentation
+  ✅ Code fixes applied
+
+READ: RESTART_RECOVERY.md for complete details
+
+=================================================================

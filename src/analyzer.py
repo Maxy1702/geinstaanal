@@ -10,6 +10,7 @@ from datetime import datetime
 import time
 import signal
 import sys
+import concurrent.futures
 
 from tqdm import tqdm
 
@@ -279,6 +280,70 @@ class AnalysisOrchestrator:
         finally:
             # Cleanup
             self.image_downloader.close()
+
+    def _analyze_single_post_with_timeout(
+        self,
+        post: Dict[str, Any],
+        username: str,
+        post_id: str,
+        system_prompt: str,
+        download_enabled: bool,
+        max_images: int
+    ) -> tuple:
+        """
+        Process a single post with timeout protection (90 seconds)
+
+        Returns:
+            tuple: (status, result) where status is 'success', 'failed', or 'error'
+        """
+        try:
+            # Download images if needed
+            image_paths = []
+            if download_enabled and post['media']['images']:
+                image_results = self.image_downloader.download_post_images(
+                    post_id=post_id,
+                    image_urls=post['media']['images'],
+                    max_images=max_images
+                )
+
+                # Collect successful downloads
+                image_paths = [
+                    r['local_path'] for r in image_results
+                    if r['success'] and r['local_path']
+                ]
+
+                if not image_paths and post['media']['images']:
+                    logger.warning(f"    No images downloaded for post {post_id}")
+
+            # Build prompt
+            user_prompt = build_user_prompt(post)
+
+            # Analyze with LLM
+            analysis_result = self.llm_client.analyze_post(
+                post=post,
+                image_paths=image_paths,
+                system_prompt=system_prompt,
+                user_prompt=user_prompt
+            )
+
+            if analysis_result:
+                # Success
+                result = {
+                    'post_id': post_id,
+                    'username': username,
+                    'url': post['url'],
+                    'timestamp': post['timestamp'],
+                    'post_type': post['type'],
+                    'analyzed_at': datetime.now().isoformat(),
+                    'image_count': len(image_paths),
+                    'analysis': analysis_result
+                }
+                return ('success', result)
+            else:
+                return ('failed', f"Analysis returned None for post {post_id}")
+
+        except Exception as e:
+            return ('error', f"Error processing post {post_id}: {str(e)}")
 
     def _process_posts(self, posts: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
         """

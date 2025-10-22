@@ -173,24 +173,40 @@ class LLMClient:
                             self.stats['total_tokens'] += result['usage'].get('total_tokens', 0)
                         
                         # Parse JSON response
+                        # First, try to extract from markdown code blocks (common with LLMs)
+                        import re
+
+                        # Try markdown JSON block first: ```json ... ```
+                        markdown_match = re.search(r'```(?:json)?\s*(\{.*?\})\s*```', response_text, re.DOTALL)
+                        if markdown_match:
+                            try:
+                                parsed = json.loads(markdown_match.group(1))
+                                self.stats['successful_requests'] += 1
+                                logger.debug("Successfully parsed JSON from markdown code block")
+                                return parsed
+                            except json.JSONDecodeError:
+                                pass
+
+                        # Try direct JSON parse
                         try:
                             parsed = json.loads(response_text)
                             self.stats['successful_requests'] += 1
                             return parsed
                         except json.JSONDecodeError as e:
-                            logger.warning(f"Failed to parse JSON response: {e}")
-                            logger.debug(f"Raw response: {response_text}")
-                            
-                            # Try to extract JSON from response
-                            import re
+                            # Last resort: extract any JSON object
                             json_match = re.search(r'\{.*\}', response_text, re.DOTALL)
                             if json_match:
                                 try:
                                     parsed = json.loads(json_match.group())
                                     self.stats['successful_requests'] += 1
+                                    logger.debug("Successfully parsed JSON from raw extraction")
                                     return parsed
                                 except:
                                     pass
+
+                            # All parsing attempts failed
+                            logger.warning(f"Failed to parse JSON response after all attempts: {e}")
+                            logger.debug(f"Raw response: {response_text[:500]}...")
                     
                     logger.error(f"Unexpected response format: {result}")
                     
