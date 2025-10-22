@@ -45,16 +45,26 @@ IQOS (Philip Morris International):
     - 3 Series: 3 DUO (back-to-back usage), 3 MULTI (extended sessions)
     - Legacy: 2.4 PLUS, 2.4
   Consumables:
-    - Terea sticks (for ILUMA): Turquoise, Amber, Yellow, Bronze, Silver, Sienna, Blue, Purple, dimensions
-    - Heets sticks (for older devices): Similar flavor range
-    - Delia sticks (emerging markets)
-    - Fiit sticks (regional variant)
+    - TEREA sticks (for ILUMA): Text "TEREA" visible, flower rosette emblem (5-6 spiral petals), slim box ~8.5x5.5cm
+    - HEETS sticks (for older devices): Similar format
+    - DELIA sticks (emerging markets): Text "DELIA" visible, similar packaging
+    - FIIT sticks (regional variant)
+    Colors: Turquoise, Amber, Yellow, Bronze, Silver, Sienna, Blue, Purple, Red, Burgundy, Orange, Beige
   Visual Indicators:
-    - Distinctive holder shape (pen-like, LED light on top)
-    - Charger case (rounded rectangular, LED indicators)
-    - Terea packaging (colored bands, health warnings)
+    - Distinctive holder shape (pen-like cylindrical ~12x1.5cm, LED light on top)
+    - Charger case (rounded rectangular pebble ~11x5cm, LED indicators)
     - Heating blade (older models) vs induction (ILUMA)
-    - Button placement, LED patterns
+
+  CuriousX Activations (IQOS umbrella brand for public events):
+    Visual Signatures:
+    - "CuriousX" or "Curious X" branding
+    - Chevron X logo (two overlapped wide V-shapes, turquoise LED-lit)
+    - Rounded triangle tessellation pattern (turquoise shapes on black, grid arrangement)
+    - Turquoise (#00B8A9) LED edge lighting on booths/furniture
+    - Black base + turquoise accent color scheme
+    - Glass display cabinets with white backlit shelves
+    - Professional event booth/activation setup
+    Detection: CuriousX is IQOS-related even without explicit "IQOS" text at events
 
 glo (British American Tobacco):
   Devices:
@@ -87,11 +97,22 @@ Other Categories:
   Other Nicotine: Pouches, snus, chewing tobacco
 
 VISUAL DETECTION GUIDELINES:
-- Device Shape: IQOS holders are distinctive pen-like, glo more cylindrical
-- Packaging: Look for brand logos, colored bands, health warnings
-- Usage Behavior: Heating vs lighting (no flame for HNB)
-- Context: Charging cases, stick insertion, LED lights
-- Branding: Logos, marketing materials, sponsored event signage
+
+Product Detection (High Confidence):
+- TEREA/DELIA/HEETS: Text visible on package + flower rosette emblem
+- ILUMA devices: Pebble case + cylindrical holder, "ILUMA" text visible
+- Device shape and usage behavior (heating vs lighting)
+
+Activation/Event Detection (Contextual):
+- CuriousX branding = IQOS activation (even without "IQOS" text)
+- Rounded triangle pattern (turquoise on black) = CuriousX booth
+- Chevron X logo + turquoise LED lighting = IQOS event
+- Glass cabinets with TEREA/ILUMA displays = IQOS retail/activation
+
+Detection Strategy:
+1. Product visible (TEREA text, ILUMA device) = DEFINITIVE detection
+2. CuriousX branding at events = IQOS-related activation (medium-high confidence)
+3. Both together = IQOS sponsored event (highest confidence)
 
 SENTIMENT ANALYSIS DIMENSIONS:
 Analyze sentiment across these specific aspects:
@@ -127,7 +148,7 @@ COMPETITIVE INTELLIGENCE SIGNALS:
 USAGE CONTEXT CATEGORIES:
 - Dining_Casual, Dining_Formal
 - Nightlife_Bar, Nightlife_Club
-- Event_Branded (brand-sponsored events), Event_Other
+- Event_Branded (brand-sponsored events), Event_CuriousX (IQOS activation), Event_Other
 - Travel (airport, vacation, etc.)
 - Work_Break
 - Home_Indoor, Home_Outdoor
