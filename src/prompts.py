@@ -90,18 +90,40 @@ Ploom (Japan Tobacco International):
     - Camel branding on consumables
   Market Position: Newer entrant to Georgian market
 
+Nicotine Pouches (Tobacco-Free):
+  Major Brands:
+    - ZYN: Swedish Match, market leader, white portions
+    - VELO: British American Tobacco, modern design
+    - Nordic Spirit: JTI, Scandinavian heritage
+    - Siberia: Strong nicotine content, distinctive black/red packaging
+    - Pablo: Ultra-strong, neon packaging (yellow/orange/pink)
+    - Other: On!, Lyft, White Fox, Killa, Thunder
+  Visual Indicators:
+    - Small round can (~4cm diameter, flat, hockey puck shape)
+    - Color-coded lids (white, black, blue, red, neon colors)
+    - Brand logo on top of can
+    - Slim format vs regular portions
+    - Individual pouches visible (small white pillows ~2x1cm)
+    - Often grouped in sets or retail displays
+  Usage Context:
+    - Discreet consumption (no smoke, no vapor)
+    - Can be used indoors, during sports, meetings
+    - Popular among younger demographics
+  Market Position: Growing category, smoke-free alternative
+
 Other Categories:
   Heat-Not-Burn (Generic): Unbranded or unidentifiable heated tobacco devices
   Cigarettes (Traditional): Combustible tobacco, lighter/flame visible
   Vapes/E-cigarettes: JUUL, IQOS VEEV, disposables, pod systems, mods
-  Other Nicotine: Pouches, snus, chewing tobacco
+  Snus: Traditional Swedish tobacco pouches (moist, tobacco content)
 
 VISUAL DETECTION GUIDELINES:
 
 Product Detection (High Confidence):
 - TEREA/DELIA/HEETS: Text visible on package + flower rosette emblem
 - ILUMA devices: Pebble case + cylindrical holder, "ILUMA" text visible
-- Device shape and usage behavior (heating vs lighting)
+- Nicotine Pouches: Round flat can (~4cm), brand logos (ZYN/VELO/Nordic Spirit/Siberia/Pablo), color-coded lids
+- Device shape and usage behavior (heating vs lighting for HNB)
 
 Activation/Event Detection (Contextual):
 - CuriousX branding = IQOS activation (even without "IQOS" text)
@@ -347,7 +369,7 @@ EXPECTED JSON SCHEMA:
     "confidence": "high"/"medium"/"low",
     "products": [
       {
-        "category": "IQOS"/"glo"/"Ploom"/"Other_HNB"/"Cigarette"/"Vape"/"Other_Nicotine",
+        "category": "IQOS"/"glo"/"Ploom"/"Other_HNB"/"Cigarette"/"Vape"/"Nicotine_Pouch"/"Snus"/"Other_Nicotine",
         "specific_brand": "Terea Turquoise"/"Neo"/"Camel"/etc or null,
         "specific_model": "IQOS ILUMA PRIME"/"glo Hyper"/etc or null,
         "product_type": "Device"/"Consumable"/"Both",
