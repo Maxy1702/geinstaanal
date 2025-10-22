@@ -34,15 +34,28 @@ CRITICAL INSTRUCTIONS:
 
 9. DETECTION THRESHOLD - EXTREMELY STRICT:
    - DO NOT detect based on "thin sticks", "vertical objects", "cylindrical shapes" alone
-   - DO NOT confuse: fingernails, candles, chopsticks, pencils, ceramic elements, phone cases, religious icons
-   - ONLY detect if you see SPECIFIC brand indicators:
-     * Brand text visible (IQOS, ILUMA, TEREA, DELIA, glo, Neo, Ploom)
+   - DO NOT confuse: fingernails, fingers, candles, chopsticks, pencils, ceramic elements, phone cases, religious icons
+   - HAND NEAR FACE ≠ smoking - people pose with hands near their face constantly
+   - "Person holding something between fingers" is NOT sufficient - must see the ACTUAL product clearly
+
+   ONLY detect if you see SPECIFIC brand indicators:
+     * Brand text visible (IQOS, ILUMA, TEREA, DELIA, glo, Neo, Ploom, cigarette pack logos)
      * TEREA/DELIA flower rosette emblem clearly visible
      * Distinctive IQOS pebble case shape with LED indicators
-     * Brand packaging colors and health warnings
-     * Active usage behavior (device in mouth, heating visible)
-   - Ambiguous "stick-like" objects = NO DETECTION
-   - If unsure, answer "not detected" - false negatives better than false positives
+     * Cigarette packaging with brand names and health warnings
+     * Lit cigarette with visible ember/smoke
+     * Active usage: device/cigarette CLEARLY IN MOUTH with product visible
+     * Brand packaging clearly visible in frame
+
+   NOT SUFFICIENT for detection:
+     * "Appears to be holding" - NO
+     * "Slim cylindrical object" - NO
+     * "Consistent with shape of" - NO
+     * Hand near mouth without clear product - NO
+     * Fingers positioned ambiguously - NO
+
+   - If you cannot CLEARLY identify the specific product, answer "not detected"
+   - False negatives are acceptable, false positives are NOT
 
 PRODUCT KNOWLEDGE BASE:
 
